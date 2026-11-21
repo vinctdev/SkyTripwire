@@ -1,0 +1,31 @@
+# SkyTripwire with Docker Compose.
+#
+#   docker compose up -d            # use the published image
+#   docker compose up -d --build    # or build the image yourself from this repository
+#
+# The web UI has no login. It is published on 127.0.0.1 only; put a reverse proxy with
+# authentication or a VPN in front of it if you need access from other machines.
+
+services:
+  skytripwire:
+    image: ghcr.io/vinctdev/skytripwire:latest
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      # Holds the database, including channel URLs with credentials. Back it up and keep it private.
+      - skytripwire-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  skytripwire-data:

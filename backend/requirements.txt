@@ -1,0 +1,51 @@
+# Exact versions of all runtime dependencies, used by the Docker image and CI so that builds
+# never pick up new releases on their own (like package-lock.json for the frontend).
+# The dependencies SkyTripwire uses directly are chosen in pyproject.toml and must have the
+# same versions here. Everything else is pulled in by them. Dependabot keeps both files up to
+# date (monthly, only releases that are at least 14 days old).
+
+# --- Direct dependencies (pyproject.toml) ---------------------------------------------------
+alembic==1.20.1             # database migrations
+anyio==4.16.0               # async runtime for the polling worker
+apprise==2.1.0              # notifications (Telegram, e-mail, ...)
+fastapi==0.162.0            # web framework and REST API
+httpx2==2.16.0              # HTTP client for adsb.lol
+pydantic==2.14.3            # data validation
+pydantic-settings==2.16.2   # settings from environment variables
+sqlalchemy==2.1.8           # database access
+sqlmodel==0.0.48            # database models
+uvicorn==0.54.0             # web server
+
+# --- Direct dependencies, optional FR24 provider (pyproject.toml extra "fr24") --------------
+curl-cffi==0.17.0           # HTTP client used by FlightRadarAPI
+flightradarapi==1.7.1       # unofficial Flightradar24 client
+
+# --- Indirect dependencies, pulled in by the packages above --------------------------------
+annotated-doc==0.0.5        # via fastapi
+annotated-types==0.8.0      # via pydantic
+beautifulsoup4==4.15.0      # via flightradarapi
+brotli==1.2.1               # via flightradarapi
+certifi==2026.10.23         # via apprise, curl-cffi, requests
+cffi==2.1.1                 # via curl-cffi
+charset-normalizer==3.5.2   # via requests
+click==8.5.0                # via apprise, uvicorn
+h11==0.16.0                 # via httpcore2, uvicorn
+httpcore2==2.16.0           # via httpx2
+idna==3.20                  # via anyio, httpx2, requests
+mako==1.4.3                 # via alembic
+markdown==3.11.3            # via apprise
+markupsafe==3.0.4           # via mako
+oauthlib==4.0.1             # via requests-oauthlib
+opentelemetry-api==1.45.2   # via fastapi
+pycparser==3.12             # via cffi
+pydantic-core==2.50.4       # via pydantic
+python-dotenv==1.2.4        # via pydantic-settings
+pyyaml==6.0.3               # via apprise
+requests==2.34.2            # via apprise, requests-oauthlib
+requests-oauthlib==2.0.0    # via apprise
+soupsieve==4.0.1            # via beautifulsoup4
+starlette==1.10.0           # via fastapi
+truststore==0.10.5          # via httpcore2, httpx2
+typing-extensions==4.16.0   # via fastapi, pydantic, sqlalchemy, starlette and others
+typing-inspection==0.4.5    # via fastapi, pydantic, pydantic-settings
+urllib3==2.8.0              # via apprise, requests

@@ -1,0 +1,17 @@
+# Allow list: only what the image build needs.
+*
+!LICENSE
+!backend/pyproject.toml
+!backend/requirements.txt
+!backend/src/
+!frontend/
+
+# Local build output, caches and test artifacts
+**/__pycache__
+**/*.py[cod]
+frontend/node_modules
+frontend/dist
+frontend/openapi.json
+frontend/e2e/.data
+frontend/playwright-report
+frontend/test-results

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.4 5.75 31.2 20.5" fill="none" stroke="#00737e" stroke-linecap="round">
+  <style>@media (prefers-color-scheme: dark) { svg { stroke: #44d6d6; } .plane { fill: #44d6d6; } }</style>
+  <path d="M23 10.5A8 8 0 0 1 23 21.5M9 10.5A8 8 0 0 0 9 21.5M26.5 7A12.5 12.5 0 0 1 26.5 25M5.5 7A12.5 12.5 0 0 0 5.5 25" stroke-width="2.25"/>
+  <path class="plane" fill="#00737e" stroke="none" transform="translate(16 16) scale(1.05)" d="M0 -6.5C.8 -6.5 1 -5.5 1 -4.5V-1.2L6.5 2V3.4L1 1.8V4.6L2.8 5.9V6.9L0 6.2-2.8 6.9V5.9L-1 4.6V1.8L-6.5 3.4V2L-1 -1.2V-4.5C-1 -5.5-.8 -6.5 0 -6.5Z"/>
+</svg>

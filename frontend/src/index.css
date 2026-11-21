@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* Dark mode follows the `dark` class on <html> (default), not the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens. Components use the semantic colors below (bg-surface, text-fg-muted,
+ * border-line, ...) instead of Tailwind's palette, so both themes are defined in one place.
+ * Neutrals are slightly cool, the accent is a radar-like teal. Text pairs meet WCAG AA.
+ */
+:root {
+  --canvas: oklch(0.975 0.004 250);
+  --surface: oklch(1 0 0);
+  --surface-muted: oklch(0.95 0.007 250);
+  --line: oklch(0.91 0.008 250);
+  --line-strong: oklch(0.64 0.016 250);
+  --fg: oklch(0.22 0.02 255);
+  --fg-muted: oklch(0.41 0.02 255);
+  --fg-subtle: oklch(0.5 0.02 255);
+
+  --accent: oklch(0.5 0.1 205);
+  --accent-hover: oklch(0.45 0.1 205);
+  --accent-fg: oklch(1 0 0);
+  --accent-text: oklch(0.46 0.1 210);
+
+  --info-soft: oklch(0.96 0.025 205);
+  --info-line: oklch(0.82 0.06 205);
+  --info-text: oklch(0.33 0.07 215);
+  --success-soft: oklch(0.96 0.035 160);
+  --success-line: oklch(0.82 0.08 160);
+  --success-text: oklch(0.34 0.08 160);
+  --warning-soft: oklch(0.96 0.045 85);
+  --warning-line: oklch(0.82 0.1 80);
+  --warning-text: oklch(0.38 0.08 65);
+  --danger-soft: oklch(0.96 0.025 25);
+  --danger-line: oklch(0.82 0.08 25);
+  --danger-text: oklch(0.42 0.15 27);
+  --danger: oklch(0.55 0.2 27);
+  --danger-hover: oklch(0.5 0.19 27);
+  --danger-fg: oklch(1 0 0);
+
+  /* Fills of meters and markers (non-text). */
+  --meter-track: oklch(0.92 0.01 250);
+  --meter-warning: oklch(0.75 0.15 75);
+  --meter-danger: oklch(0.6 0.2 27);
+}
+
+.dark {
+  --canvas: oklch(0.16 0.014 250);
+  --surface: oklch(0.2 0.016 250);
+  --surface-muted: oklch(0.255 0.018 250);
+  --line: oklch(0.29 0.018 250);
+  --line-strong: oklch(0.53 0.02 250);
+  --fg: oklch(0.95 0.005 250);
+  --fg-muted: oklch(0.79 0.012 250);
+  --fg-subtle: oklch(0.68 0.015 250);
+
+  --accent: oklch(0.8 0.12 195);
+  --accent-hover: oklch(0.86 0.1 195);
+  --accent-fg: oklch(0.18 0.03 220);
+  --accent-text: oklch(0.83 0.11 195);
+
+  --info-soft: oklch(0.26 0.04 210);
+  --info-line: oklch(0.4 0.06 205);
+  --info-text: oklch(0.9 0.05 200);
+  --success-soft: oklch(0.26 0.045 160);
+  --success-line: oklch(0.42 0.07 160);
+  --success-text: oklch(0.9 0.07 160);
+  --warning-soft: oklch(0.28 0.05 75);
+  --warning-line: oklch(0.45 0.08 75);
+  --warning-text: oklch(0.92 0.08 85);
+  --danger-soft: oklch(0.27 0.06 25);
+  --danger-line: oklch(0.45 0.11 25);
+  --danger-text: oklch(0.88 0.07 25);
+  --danger: oklch(0.55 0.19 27);
+  --danger-hover: oklch(0.6 0.19 27);
+  --danger-fg: oklch(1 0 0);
+
+  --meter-track: oklch(0.29 0.018 250);
+  --meter-warning: oklch(0.8 0.14 80);
+  --meter-danger: oklch(0.68 0.18 25);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-text: var(--accent-text);
+  --color-info-soft: var(--info-soft);
+  --color-info-line: var(--info-line);
+  --color-info-text: var(--info-text);
+  --color-success-soft: var(--success-soft);
+  --color-success-line: var(--success-line);
+  --color-success-text: var(--success-text);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-line: var(--warning-line);
+  --color-warning-text: var(--warning-text);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-line: var(--danger-line);
+  --color-danger-text: var(--danger-text);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-fg: var(--danger-fg);
+  --color-meter-track: var(--meter-track);
+  --color-meter-warning: var(--meter-warning);
+  --color-meter-danger: var(--meter-danger);
+}
+
+/* Everything is sized in rem, so the root font size would scale the whole UI if needed. */
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--fg);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0.05em 0.3em;
+    border-radius: 0.25rem;
+    background-color: var(--surface-muted);
+  }
+}
